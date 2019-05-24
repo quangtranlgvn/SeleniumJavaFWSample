@@ -99,7 +99,7 @@ public class TestExecutor {
 		
 		if(driverConfigList == null) {
 			try {
-				String driverFilePath = System.getProperty("user.dir") + File.separator + Common.URL_DRIVER_CONFIG;
+				String driverFilePath = System.getProperty("user.dir") + File.separator + Common.CONFIG_FILE_DRIVER;
 				driverConfigList = DriverConfigLoader.getAllDriverConfig(driverFilePath);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

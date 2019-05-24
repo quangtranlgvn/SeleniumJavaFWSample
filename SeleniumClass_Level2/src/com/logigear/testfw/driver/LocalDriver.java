@@ -7,11 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.ProfilesIni;
 
-import com.logigear.testfw.common.Common;
 import com.logigear.testfw.conf.DriverConfig;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public class LocalDriver extends BaseDriver {
 	
 	public LocalDriver(DriverType type, DriverConfig driverConfig)

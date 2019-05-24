@@ -1,4 +1,4 @@
-package com.logigear.testfw.base;
+package com.logigear.testfw.common;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
@@ -10,7 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
-import com.logigear.testfw.common.TestExecutor;
 import com.logigear.testfw.conf.DriverConfig;
 import com.logigear.testfw.conf.LogWrapper;
 import com.logigear.testfw.driver.BaseDriver;

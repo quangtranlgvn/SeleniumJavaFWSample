@@ -2,6 +2,11 @@ package com.logigear.testfw.conf;
 
 import com.logigear.testfw.driver.DriverType;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public enum TestTarget {
 	UNSUPPORTED,
 	NATIVE,

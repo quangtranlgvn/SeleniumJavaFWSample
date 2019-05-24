@@ -1,6 +1,6 @@
 package com.logigear.test.ta_dashboard.pom;
 
-import com.logigear.testfw.base.BasePOM;
+import com.logigear.testfw.common.BasePOM;
 import com.logigear.testfw.common.Common;
 import com.logigear.testfw.element.Element;
 

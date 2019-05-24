@@ -1,9 +1,8 @@
-package com.logigear.testfw.base;
+package com.logigear.testfw.common;
 
 import java.util.Map;
 
 import com.logigear.test.ta_dashboard.pom.LoginPage;
-import com.logigear.testfw.common.TestExecutor;
 import com.logigear.testfw.conf.Locator;
 import com.logigear.testfw.conf.LocatorLoader;
 

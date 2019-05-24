@@ -1,5 +1,10 @@
 package com.logigear.testfw.conf;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public enum TestPlatform {
 	UNSUPPORTED,
     ANDROID,

@@ -10,6 +10,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.logigear.testfw.conf.DriverConfig;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public class RemoteDriver extends BaseDriver {
 	
 	public RemoteDriver(DriverType type, DriverConfig driverConfig)

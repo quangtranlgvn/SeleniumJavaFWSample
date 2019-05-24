@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import com.logigear.test.ta_dashboard.pom.HomePage;
 import com.logigear.test.ta_dashboard.pom.LoginPage;
-import com.logigear.testfw.base.BaseTest;
+import com.logigear.testfw.common.BaseTest;
 
 public class LoginTest extends BaseTest{
 

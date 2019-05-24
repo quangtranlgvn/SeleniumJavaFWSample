@@ -15,6 +15,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.logigear.testfw.conf.LogWrapper;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public class BaseDriver {
 	protected static final Logger LOG = LogWrapper.createLogger(BaseDriver.class.getName());
 	

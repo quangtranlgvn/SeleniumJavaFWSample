@@ -7,6 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.logigear.testfw.conf.DriverConfig;
 import com.logigear.testfw.conf.TestEnvironmentConfig;
 
+/**
+ * 
+ * @author ngocquang.tran
+ *
+ */
 public class DriverManager {
 
 	//private static final Logger LOG = LogWrapper.createLogger(DriverManager.class.getName());
