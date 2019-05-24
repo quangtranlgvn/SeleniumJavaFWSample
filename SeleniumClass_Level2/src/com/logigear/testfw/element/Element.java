@@ -30,6 +30,12 @@ public class Element extends BaseElement {
 		super(xpath);
 	}
 
+
+	public void enter(String text) {
+		clear();
+		sendKeys(text);
+	}
+
 	public void doubleClick() {
 		LOG.info(String.format("Click on the control %s twice", getLocator().toString()));
 		for (int i = 0; i < 2; i++) {
@@ -185,38 +191,6 @@ public class Element extends BaseElement {
 		}
 	}
 
-	public void waitForClickable() {
-		waitForClickable(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForDisplay() {
-		waitForDisplay(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForInvisibility() {
-		waitForInvisibility(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForPresent() {
-		waitForPresent(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForAllElementsDisplay() {
-		waitForAllElementsDisplay(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForAllElementsPresent() {
-		waitForAllElementsPresent(Common.ELEMENT_TIMEOUT);
-	}
-
-	public void waitForInvisibility(int timeOutInSeconds) {
-		TestExecutor.getInstance().getCurrentDriver().waitForInvisibility(getLocator(), timeOutInSeconds);
-	}
-
-	public void waitForAllElementsDisplay(int timeOutInSeconds) {
-		_elements = TestExecutor.getInstance().getCurrentDriver().waitForAllElementsDisplay(getLocator(), timeOutInSeconds);
-	}
-
 	protected Select selection(int timeOutInSeconds) {
 		Select selection = new Select(waitForDisplay(timeOutInSeconds));
 		return selection;
@@ -366,98 +340,5 @@ public class Element extends BaseElement {
 		return getOptions(Common.ELEMENT_LONG_TIMEOUT);
 	}
 
-	public List<String> getSelectedOptions(int timeOutInSeconds) {
-		List<String> options = new ArrayList<String>();
-		if (timeOutInSeconds <= 0) {
-			LOG.severe("The time out is invalid. It must greater than 0");
-			return options;
-		}
-		Stopwatch sw = Stopwatch.createStarted();
-		try {
-			LOG.info(String.format("Get all selected options of the control %s", getLocator().toString()));
-			List<WebElement> elementsList = selection(timeOutInSeconds).getAllSelectedOptions();
-			for (WebElement element : elementsList) {
-				options.add(element.getText());
-			}
-		} catch (StaleElementReferenceException ex) {
-			if (sw.elapsed(TimeUnit.SECONDS) <= (long) timeOutInSeconds) {
-				LOG.warning(String.format("Try to get all selected options of the control %s again",
-						getLocator().toString()));
-				getSelectedOptions(timeOutInSeconds - (int) sw.elapsed(TimeUnit.SECONDS));
-			}
-		} catch (Exception error) {
-			LOG.severe(String.format("Has error with control '%s': %s", getLocator().toString(), error.getMessage()));
-			throw error;
-		}
-		return options;
-	}
-
-	public List<String> getSelectedOptions() {
-		return getSelectedOptions(Common.ELEMENT_LONG_TIMEOUT);
-	}
-
-	public void enter(String text) {
-		clear();
-		sendKeys(text);
-	}
-
-	public List<Element> findChildrenElements(By by) {
-		List<WebElement> list = null;
-		List<Element> response = new ArrayList<>();
-		try {
-			LOG.info(String.format("Find all child controls of the control %s", getLocator().toString()));
-			waitForPresent();
-			list = getElement().findElements(by);
-
-			for (int i = 1; i <= list.size(); i++) {
-				String xpath = getLocator().toString().substring(10) + by.toString().substring(10);
-
-				Element tmp_ele = new Element("(" + xpath + ")[" + i + "]");
-				response.add(tmp_ele);
-			}
-		} catch (Exception error) {
-			LOG.severe(String.format("Cannot find the children with xpath %s on control '%s'", by,
-					getLocator().toString(), error.getMessage()));
-			throw error;
-		}
-		return response;
-	}
-
-	public Element findChildrenElement(By by) {
-		Element element = null;
-		try {
-			LOG.info(String.format("Find child control of the control %s", getLocator().toString()));
-			waitForPresent();
-
-			String xpath = getLocator().toString().substring(10) + by.toString().substring(10);
-			element = new Element(xpath);
-		} catch (Exception error) {
-			LOG.severe(String.format("Cannot find the children with xpath %s on control '%s'", by,
-					getLocator().toString(), error.getMessage()));
-			throw error;
-		}
-		return element;
-	}
-
-	public List<Element> getElements() {
-		List<WebElement> list = null;
-		List<Element> response = new ArrayList<>();
-		try {
-			LOG.info(String.format("Wait for all controls %s to be present in DOM", getLocator().toString()));
-			waitForPresent(Common.ELEMENT_TIMEOUT);
-			list = getWebElements();
-
-			for (int i = 1; i <= list.size(); i++) {
-				String xpath = getLocator().toString().substring(10);
-
-				Element tmp_ele = new Element("(" + xpath + ")[" + i + "]");
-				response.add(tmp_ele);
-			}
-		} catch (Exception error) {
-			LOG.severe(String.format("Has error with control '%s': %s", getLocator().toString(), error.getMessage()));
-			throw error;
-		}
-		return response;
-	}
 
 }

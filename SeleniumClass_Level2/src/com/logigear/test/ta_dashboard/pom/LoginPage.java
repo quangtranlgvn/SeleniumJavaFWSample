@@ -35,9 +35,6 @@ public class LoginPage extends BasePOM{
 	 * @return
 	 */
 	public HomePage login(String username, String password, String repo) {
-		cbbRepo.waitForDisplay();
-		txtUsername.waitForDisplay();
-		
 		cbbRepo.selectByValue(repo);
 		txtUsername.enter(username);
 		txtPassword.enter(password);

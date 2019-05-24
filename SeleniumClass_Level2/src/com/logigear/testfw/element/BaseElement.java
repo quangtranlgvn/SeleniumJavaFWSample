@@ -18,8 +18,8 @@ import com.logigear.testfw.conf.LogWrapper;
 abstract class BaseElement{
 
 	private static final Logger LOG = LogWrapper.createLogger(BaseElement.class.getName());
-	protected WebElement _element = null;
-	protected List<WebElement> _elements = null;
+	//protected WebElement _element = null;
+	//protected List<WebElement> _elements = null;
 
 	private By _byLocator;
 
@@ -31,25 +31,16 @@ abstract class BaseElement{
 		this._byLocator = By.xpath(xpath);
 	}
 
-	public BaseElement(WebElement webelement, By locator) {
-		this._element = webelement;
-		this._byLocator = locator;
-	}
-
 	protected By getLocator() {
 		return this._byLocator;
 	}
 
-//	protected WebDriver getDriver() {
-//		return TestExecutor.getInstance().getCurrentDriver().
-//	}
-
 	protected WebElement getElement() {
-		return waitForPresent(Common.ELEMENT_TIMEOUT);
+		return waitForDisplay(Common.ELEMENT_TIMEOUT);
 	}
 
 	protected List<WebElement> getWebElements() {
-		return waitForAllElementsPresent(Common.ELEMENT_TIMEOUT);
+		return waitForAllElementsDisplay(Common.ELEMENT_TIMEOUT);
 	}
 
 	protected WebElement waitForPresent(int timeOutInSeconds) {
@@ -62,6 +53,12 @@ abstract class BaseElement{
 		LOG.info(String.format("Wait for all controls %s to be present in DOM with timeOut %s", getLocator().toString(),
 				timeOutInSeconds));
 		return TestExecutor.getInstance().getCurrentDriver().waitForAllElementsPresent(getLocator(), timeOutInSeconds);
+	}
+	
+	protected List<WebElement> waitForAllElementsDisplay(int timeOutInSeconds) {
+		LOG.info(String.format("Wait for all controls %s to be present in DOM with timeOut %s", getLocator().toString(),
+				timeOutInSeconds));
+		return TestExecutor.getInstance().getCurrentDriver().waitForAllElementsDisplay(getLocator(), timeOutInSeconds);
 	}
 
 	public WebElement waitForDisplay(int timeOutInSeconds) {
